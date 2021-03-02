@@ -1,14 +1,15 @@
 const fs = require("fs");
+const { logica } = require("./logica");
 
 const multiplicar = (base) => {
-  let resultado = "";
-
-  for (let index = 1; index <= 10; index++) {
-    resultado += `${base} * ${index} = ${base * index}\n`;
-  }
+  const resultado = logica(base);
   console.log(resultado);
 
-  fs.writeFileSync(`tablas/tabla-del-${base}`, resultado);
+  const nombreArchivo = `tabla-del-${base}`;
+  fs.writeFile(`tablas/tabla-del-${base}`, resultado, (err) => {
+    if (err) throw err;
+    console.log(`el archivo ${nombreArchivo} fue creado!`);
+  });
 };
 module.exports = {
   multiplicar,
