@@ -1,33 +1,37 @@
-const argv = require('yargs')
-        .option('b', {
-            alias: 'base',
-            type: 'number',
-            demandOption: true,
-            describe: 'Es la base de la tabla de multipiplicar'
-        })
-        .option('l', {
-            alias: 'limite',
-            type: 'number',
-            demandOption: false,
-            default: 10,
-            describe: 'Es el limite de la tabla'
-        })
-        .check((argv, options) => {
-            if(isNaN(argv.b)){
-                throw new Error('La base tiene que ser un numero')
-            }
-            return true
-        })
-        .help()         
+const argv = require("yargs")
+  .option("b", {
+    alias: "base",
+    type: "number",
+    demandOption: true,
+    describe: "Es la base de la tabla de multiplicar",
+  })
 
-const { options } = require('yargs');
-const {multiplicar} = require("./multiplicador")
+  .option("l", {
+    alias: "limite",
+    type: "number",
+    demandOption: false,
+    default: 10,
+    describe: "Es el limite de la tabla",
+  })
 
-// console.log(argv)
+  .option("v", {
+    alias: "visualizar",
+    type: "boolean",
+    demandOption: false,
+    default: false,
+    describe: "Permite visualizar la tabla si se agrega el parametro",
+  })  
 
-// const base = 7 
+  .check((argv, options) => {
+    if (isNaN(argv.b)) {
+      throw new Error("La base tiene que ser un numero");
+    }
+    return true;
+  })
+  .help()
+  .version().argv;
 
-multiplicar(argv.base);
+const { options } = require("yargs");
+const { multiplicar } = require("./multiplicador");
 
-
-
+multiplicar(argv.b, argv.l, argv.v);

@@ -4,10 +4,9 @@ const logica = (base, limite) => {
   for (let index = 1; index <= limite; index++) {
     resultado += `${base} * ${index} = ${base * index}\n`;
   }
-  return resultado
-  
+  return resultado;
 };
 
 module.exports = {
-  logica
+  logica,
 };
